@@ -18,6 +18,13 @@ var hotel = {
     ],
     name: "CareerDevs Innt"
 }
+
+function displayDetails(room){
+    console.log("hello");
+    console.log(room);
+    document.getElementById("price").innerHTML = hotel.rooms[room].price;
+    document.getElementById("available").innerHTML = hotel.rooms[room].available;
+}
 //display rooms as radio options 
 //console.log(document.getElementById("label").nodeName);
 for(var i =0; i<hotel.rooms.length; i++){
@@ -28,12 +35,16 @@ for(var i =0; i<hotel.rooms.length; i++){
     radioBtn.setAttribute("name", "rooms");
     radioBtn.setAttribute("value", i);
     radioBtn.setAttribute("id","room" + i);
+    //radioBtn.setAttribute("onclick", `displayDetails(${i})`);
+    radioBtn.setAttribute("onclick", "displayDetails(" + i + ")");
+    //radioBtn.onclick = displayDetails(i);
     radioLbl.innerHTML = hotel.rooms[i].name;
     console.log("stop");
     
     document.getElementById("radialSection").appendChild(radioBtn);
     document.getElementById("radialSection").appendChild(radioLbl);
 }
+
 
 // on form submission confirm radio was selected 
 // and checkbox checked 
