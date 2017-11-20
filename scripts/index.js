@@ -14,6 +14,11 @@ var hotel = {
             name: "Luxery Suite",
             price: "$250.00",
             available: 5
+        },
+        {
+            name: "Penthouse",
+            price: "$5000.00",
+            available: 2
         }
     ],
     name: "CareerDevs Innt"
@@ -44,6 +49,32 @@ for(var i =0; i<hotel.rooms.length; i++){
     document.getElementById("radialSection").appendChild(radioBtn);
     document.getElementById("radialSection").appendChild(radioLbl);
 }
+
+document.getElementById("reservationForm").onsubmit = function(event){
+    event.preventDefault();
+    
+    // check if terms are agreed to 
+    if(!document.getElementById("confirmation").checked){
+        alert("Please agree to conditions");
+        return;
+    }
+    
+    var radios = document.getElementsByName("rooms");
+    var roomSelection = "";
+    for(var i =0; i < radios.length; i++){
+        //console.log(radios[i]);
+        if(radios[i].checked){
+            roomSelection = radios[i].value;
+            break;
+        }
+    }
+    if(!roomSelection){
+        alert("No Selection made");
+        return;
+    }
+    alert("Thank you for reserving the room" + hotel.rooms[parseInt(roomSelection)].name + ".");
+}
+
 
 
 // on form submission confirm radio was selected 
